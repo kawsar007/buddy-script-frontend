@@ -19,8 +19,8 @@ export function RegisterForm() {
   return (
     <div className="flex flex-col gap-6">
       <div className="text-center">
-        <p className="text-muted text-sm font-medium">Get started</p>
-        <h1 className="font-display text-ink mt-1 text-2xl font-bold sm:text-3xl">
+        <p className="text-muted text-md font-normal">Get started</p>
+        <h1 className="font-display text-ink mt-1 text-2xl font-medium sm:text-3xl">
           Create your account
         </h1>
       </div>

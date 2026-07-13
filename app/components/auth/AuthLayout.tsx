@@ -1,15 +1,9 @@
 import Image from "next/image";
 import type { ReactNode } from "react";
-
 interface AuthLayoutProps {
   children: ReactNode;
 }
 
-/**
- * Purely presentational shell — no data fetching, no client state — so it
- * can be statically generated at build time (SSG) and reused by both the
- * login and register routes.
- */
 export function AuthLayout({ children }: AuthLayoutProps) {
   return (
     <div className="relative min-h-screen w-full overflow-hidden bg-[#F0F2F5]">
@@ -41,7 +35,7 @@ export function AuthLayout({ children }: AuthLayoutProps) {
 
       {/* Main two-column layout */}
       <div className="relative z-10 flex min-h-screen w-full items-center justify-center px-4 py-10 sm:px-6 lg:px-10">
-        <div className="flex w-full max-w-6xl items-center justify-center gap-12 lg:gap-20">
+        <div className="flex w-full max-w-7xl items-center justify-center gap-12 lg:gap-20">
           <div className="hidden flex-1 items-center justify-center md:flex">
             <Image
               src="/images/login.png"
@@ -49,11 +43,11 @@ export function AuthLayout({ children }: AuthLayoutProps) {
               width={1269}
               height={1240}
               priority
-              className="h-auto w-full max-w-md object-contain"
+              className="h-auto w-full max-w-xl object-contain"
             />
           </div>
 
-          <div className="w-full max-w-md rounded-3xl bg-white p-6 shadow-[0_20px_60px_-15px_rgba(22,33,58,0.15)] sm:p-10">
+          <div className="w-full max-w-md rounded-md bg-white p-6 sm:p-10">
             {children}
           </div>
         </div>
