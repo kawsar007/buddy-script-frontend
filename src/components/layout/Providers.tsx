@@ -1,30 +1,38 @@
-"use client";
+'use client';
 
-import type { ReactNode } from "react";
-import { Toaster } from "react-hot-toast";
+import { AuthProvider } from '@/src/contexts/AuthContext';
+import { ThemeProvider } from '@/src/contexts/ThemeContext';
+import { getQueryClient } from '@/src/lib/api/query-client';
+import { QueryClientProvider } from '@tanstack/react-query';
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
+import { type ReactNode, useState } from 'react';
+import { Toaster } from 'react-hot-toast';
+// import { getQueryClient } from '@/lib/api/query-client';
+// import { ThemeProvider } from '@/contexts/ThemeContext';
+// import { AuthProvider } from '@/contexts/AuthContext';
 
-interface ProvidersProps {
-  children: ReactNode;
-}
+export function Providers({ children }: { children: ReactNode }) {
+  // useState (not a module-level constant) so the browser client survives
+  // across re-renders but is still created client-side, matching the
+  // server/browser split in lib/api/query-client.ts.
+  const [queryClient] = useState(getQueryClient);
 
-export function Providers({ children }: ProvidersProps) {
   return (
-    <div>
-      {children}
-      <Toaster
-        position="top-right"
-        toastOptions={{
-          duration: 4000,
-          style: {
-            background: "var(--color-surface)",
-            color: "var(--color-ink)",
-            border: "1px solid var(--color-border)",
-            fontSize: "14px",
-          },
-          success: { iconTheme: { primary: "#16a34a", secondary: "#fff" } },
-          error: { iconTheme: { primary: "#e0393e", secondary: "#fff" } },
-        }}
-      />
-    </div>
+    <QueryClientProvider client={queryClient}>
+      <ThemeProvider>
+        <AuthProvider>
+          {children}
+          <Toaster
+            position="top-center"
+            toastOptions={{
+              className: '!bg-card !text-card-foreground !border !border-border',
+            }}
+          />
+        </AuthProvider>
+      </ThemeProvider>
+      {process.env.NODE_ENV === 'development' && (
+        <ReactQueryDevtools initialIsOpen={false} />
+      )}
+    </QueryClientProvider>
   );
 }

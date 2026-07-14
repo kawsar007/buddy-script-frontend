@@ -1,5 +1,6 @@
-import { LoginForm } from "@/src/components/auth/LoginForm";
+// import { LoginForm } from "@/src/components/auth/LoginForm";
 import { FullPageSpinner } from "@/src/components/ui/Spinner";
+import { LoginForm } from "@/src/features/auth/components/LoginForm";
 import type { Metadata } from "next";
 import { Suspense } from "react";
 

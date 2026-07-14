@@ -1,21 +1,18 @@
 "use client";
 
-import { publicConfig } from "@/src/lib/constants/config";
-import toast from "react-hot-toast";
-
 export function GoogleSignInButton() {
-  const handleClick = () => {
-    if (!publicConfig.googleClientId) {
-      toast.error("Google sign-in isn't configured yet.");
-      return;
-    }
-    // window.location.href = `${apiBase}/auth/google`; // real redirect flow
-  };
+  // const handleClick = () => {
+  //   if (!publicConfig.googleClientId) {
+  //     toast.error("Google sign-in isn't configured yet.");
+  //     return;
+  //   }
+  //   // window.location.href = `${apiBase}/auth/google`; // real redirect flow
+  // };
 
   return (
     <button
       type="button"
-      onClick={handleClick}
+      // onClick={handleClick}
       className="border-border bg-surface text-ink hover:bg-bg focus-visible:outline-primary inline-flex w-full items-center justify-center gap-2 rounded-xl border px-4 py-3 text-sm font-semibold transition-colors duration-150 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
     >
       <svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true">

@@ -1,6 +1,6 @@
+import { AuthLayout } from "@/src/features/auth/components/AuthLayout";
+import { BrandLogo } from "@/src/features/auth/components/BrandLogo";
 import type { ReactNode } from "react";
-import { AuthLayout } from "../../components/auth/AuthLayout";
-import { BrandLogo } from "../../components/auth/BrandLogo";
 
 export default function AuthRouteLayout({ children }: { children: ReactNode }) {
   return (
