@@ -10,8 +10,6 @@ import {
   Users,
   Video,
 } from "lucide-react";
-// import { Avatar } from "@/components/ui/Avatar";
-// import { exploreNavItems, suggestedPeople, upcomingEvents } from "@/lib/data/feed.mock";
 
 const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
   learning: Video,
@@ -66,7 +64,6 @@ export function LeftSidebar() {
           {suggestedPeople.map((person) => (
             <li key={person.id} className="flex items-center gap-3">
               <Avatar avatarUrl={person.image} firstName="" lastName="" size="sm" />
-              {/* <Image src={person.image} alt={person.name} height="10" width="10" /> */}
               <div className="min-w-0 flex-1">
                 <p className="text-ink truncate text-sm font-semibold">{person.name}</p>
 
@@ -74,7 +71,7 @@ export function LeftSidebar() {
               </div>
               <button
                 type="button"
-                className="border-border text-ink hover:bg-bg shrink-0 rounded-full border px-3 py-1.5 text-xs font-semibold transition-colors"
+                className="border-border text-muted hover:bg-primary hover:text-white shrink-0 rounded-sm border px-3 py-1.5 text-xs font-medium transition-colors cursor-pointer"
               >
                 Connect
               </button>

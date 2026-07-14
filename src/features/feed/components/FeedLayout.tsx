@@ -19,7 +19,7 @@ export function FeedLayout() {
     <div className="bg-bg flex h-screen flex-col overflow-hidden">
       <AppHeader onMenuClick={() => setIsDrawerOpen(true)} />
 
-      <div className="mx-auto flex w-full max-w-[1600px] flex-1 gap-5 overflow-hidden px-4 py-5 sm:px-6">
+      <div className="mx-auto flex w-full max-w-[1320px] flex-1 gap-5 overflow-hidden px-2 py-5 sm:px-6">
         {/* Left sidebar — tablet & desktop, scrolls independently */}
         <aside className="scroll-column hidden w-72 shrink-0 overflow-y-auto md:block">
           <LeftSidebar />

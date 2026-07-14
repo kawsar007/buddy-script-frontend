@@ -41,8 +41,8 @@ export const suggestedPeople: Person[] = [
 ];
 
 export const upcomingEvents: EventItem[] = [
-  { id: "ev-1", title: "Product Design Meetup", date: "Fri, Aug 14", attendees: 128 },
-  { id: "ev-2", title: "Frontend Conf 2026", date: "Sat, Sep 5", attendees: 842 },
+  { id: "ev-1", title: "Product Design Meetup", date: "Fri, Aug 14", attendees: 128, image: "/images/feed_event1.png" },
+  { id: "ev-2", title: "Frontend Conf 2026", date: "Sat, Sep 5", attendees: 842, image: "/images/feed_event1.png" },
 ];
 
 export const recommendations: Recommendation[] = [

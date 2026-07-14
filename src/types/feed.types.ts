@@ -47,6 +47,7 @@ export interface EventItem {
   title: string;
   date: string;
   attendees: number;
+  image: string;
 }
 
 export interface NavItem {

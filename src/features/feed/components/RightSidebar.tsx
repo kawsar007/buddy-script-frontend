@@ -81,7 +81,6 @@ export function RightSidebar() {
         <ul className="flex flex-col gap-3">
           {filteredFriends.map((friend) => (
             <li key={friend.id} className="flex items-center gap-3">
-              {/* <Avatar name={friend.name} size="sm" online={friend.online} /> */}
               <Avatar avatarUrl={friend?.image} firstName="" lastName="" size="sm" />
               <div className="min-w-0 flex-1">
                 <p className="text-ink truncate text-sm font-semibold">{friend.name}</p>
@@ -91,6 +90,10 @@ export function RightSidebar() {
                 <span className="text-muted shrink-0 text-[11px]">
                   {friend.lastActive}
                 </span>
+              )}
+
+              {friend.online && (
+                <span className="h-2 w-2 rounded-full bg-green-500 ring-2 ring-green-200" />
               )}
             </li>
           ))}
