@@ -71,8 +71,8 @@ export function LoginForm() {
           error={errors.password?.message}
           {...register('password')}
         />
-        <Button type="submit" isLoading={login.isPending} className="mt-2 w-full">
-          Sign in
+        <Button type="submit" isLoading={login.isPending} className="mt-2 w-full cursor-pointer">
+          Login now
         </Button>
         <p className="text-muted-foreground text-center text-sm">
           Don&apos;t have an account?{' '}

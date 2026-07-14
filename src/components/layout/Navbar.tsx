@@ -5,12 +5,6 @@ import { LogoutButton } from '@/src/features/auth/components/LogoutButton';
 import { ROUTES } from '@/src/lib/constants/routes';
 import { Rss } from 'lucide-react';
 import Link from 'next/link';
-import { ThemeToggle } from '../theme/ThemeToggle';
-// import { useAuth } from '@/contexts/AuthContext';
-// import { ThemeToggle } from '@/components/theme/ThemeToggle';
-// import { LogoutButton } from '@/features/auth/components/LogoutButton';
-// import { buttonVariants } from '@/components/ui/Button';
-// import { ROUTES } from '@/lib/constants/routes';
 
 export function Navbar() {
   const { user, isAuthenticated, isLoading } = useAuth();
@@ -24,7 +18,7 @@ export function Navbar() {
         </Link>
 
         <div className="flex items-center gap-3">
-          <ThemeToggle />
+          {/* <ThemeToggle /> */}
 
           {isLoading ? null : isAuthenticated ? (
             <div className="flex items-center gap-3">

@@ -1,23 +1,115 @@
-@import "tailwindcss";
+@import 'tailwindcss';
+
+/* Drive dark: utilities off a .dark class on <html> (set by the anti-flicker
+   script + ThemeContext) instead of the OS-only prefers-color-scheme default,
+   so users can override their system preference. */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* Raw color values. Kept separate from the @theme block below so light/dark
+   is just "swap these variables" — components never reference light/dark
+   directly, only the semantic tokens exposed via @theme. */
+:root {
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.145 0 0);
+  --surface: oklch(0.98 0 0);
+  --surface-foreground: oklch(0.145 0 0);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.145 0 0);
+  --border: oklch(0.9 0 0);
+  --input: oklch(0.9 0 0);
+  --ring: oklch(0.55 0.15 264);
+  --primary: #1890FF;
+  --primary-foreground: oklch(0.98 0 0);
+  --secondary: oklch(0.96 0 0);
+  --secondary-foreground: oklch(0.2 0 0);
+  --muted: oklch(0.96 0 0);
+  --muted-foreground: oklch(0.5 0 0);
+  --accent: oklch(0.94 0.02 264);
+  --accent-foreground: oklch(0.3 0.1 264);
+  --destructive: oklch(0.58 0.22 27);
+  --destructive-foreground: oklch(0.98 0 0);
+}
+
+.dark {
+  --background: oklch(0.145 0 0);
+  --foreground: oklch(0.96 0 0);
+  --surface: oklch(0.19 0 0);
+  --surface-foreground: oklch(0.96 0 0);
+  --card: oklch(0.19 0 0);
+  --card-foreground: oklch(0.96 0 0);
+  --border: oklch(0.3 0 0);
+  --input: oklch(0.3 0 0);
+  --ring: oklch(0.65 0.15 264);
+  --primary: oklch(0.65 0.15 264);
+  --primary-foreground: oklch(0.145 0 0);
+  --secondary: oklch(0.26 0 0);
+  --secondary-foreground: oklch(0.96 0 0);
+  --muted: oklch(0.26 0 0);
+  --muted-foreground: oklch(0.65 0 0);
+  --accent: oklch(0.3 0.05 264);
+  --accent-foreground: oklch(0.9 0.05 264);
+  --destructive: oklch(0.7 0.19 27);
+  --destructive-foreground: oklch(0.145 0 0);
+}
+
+/* Exposes the variables above as Tailwind utilities: bg-background,
+   text-foreground, border-border, bg-accent, text-accent-foreground, etc. */
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-surface: var(--surface);
+  --color-surface-foreground: var(--surface-foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --font-sans: ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+  }
+}
+
+
+
+/* @import "tailwindcss";
 
 :root {
-  /* Brand */
+  Brand
   --color-primary: #1890FF;
   --color-primary-dark: #0568c4;
   --color-primary-light: #eaf1ff;
 
-  /* Illustration / accent */
+  Illustration / accent
   --color-sky: #8fc6fa;
   --color-sky-light: #cfe8ff;
 
-  /* Neutrals */
+  Neutrals
   --color-ink: #16213a;
   --color-muted: #64748b;
   --color-border: #e4e8f0;
   --color-surface: #ffffff;
   --color-bg: #f3f5f9;
 
-  /* Feedback */
+  Feedback
   --color-success: #16a34a;
   --color-danger: #e0393e;
   --color-danger-light: #fdecec;
@@ -64,4 +156,4 @@ body {
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
-}
+} */
