@@ -1,6 +1,6 @@
 "use client";
 
-import { publicConfig } from "@/app/lib/constants/config";
+import { publicConfig } from "@/src/lib/constants/config";
 import toast from "react-hot-toast";
 
 export function GoogleSignInButton() {

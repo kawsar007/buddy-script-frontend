@@ -1,5 +1,5 @@
-import { LoginForm } from "@/app/components/auth/LoginForm";
-import { FullPageSpinner } from "@/app/components/ui/Spinner";
+import { LoginForm } from "@/src/components/auth/LoginForm";
+import { FullPageSpinner } from "@/src/components/ui/Spinner";
 import type { Metadata } from "next";
 import { Suspense } from "react";
 

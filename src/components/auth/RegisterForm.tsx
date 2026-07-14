@@ -1,7 +1,8 @@
 "use client";
 
-import { ROUTES } from "@/app/lib/constants/routes";
+import { ROUTES } from "@/src/lib/constants/routes";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { Button } from "../ui/Button";
 import { Checkbox } from "../ui/Checkbox";
@@ -11,15 +12,16 @@ import { PasswordInput } from "../ui/PasswordInput";
 import { GoogleSignInButton } from "./GoogleSignInButton";
 
 
-export function LoginForm() {
+export function RegisterForm() {
   const [submitError, setSubmitError] = useState<string | null>(null);
+  const router = useRouter();
 
   return (
     <div className="flex flex-col gap-6">
       <div className="text-center">
-        <p className="text-muted text-md font-normal">Welcome back</p>
+        <p className="text-muted text-md font-normal">Get started</p>
         <h1 className="font-display text-ink mt-1 text-2xl font-medium sm:text-3xl">
-          Login to your account
+          Create your account
         </h1>
       </div>
 
@@ -35,6 +37,13 @@ export function LoginForm() {
         <FormError message={submitError} />
 
         <Input
+          label="Full name"
+          type="text"
+          autoComplete="name"
+          placeholder="Jane Cooper"
+        />
+
+        <Input
           label="Email"
           type="email"
           autoComplete="email"
@@ -43,26 +52,29 @@ export function LoginForm() {
 
         <PasswordInput
           label="Password"
-          autoComplete="current-password"
+          autoComplete="new-password"
           placeholder="••••••••"
         />
 
-        <div className="flex items-center justify-between">
-          <Checkbox label="Remember me" />
-          <Link href="#" className="text-primary text-sm font-medium hover:underline">
-            Forgot password?
-          </Link>
-        </div>
+        <PasswordInput
+          label="Confirm password"
+          autoComplete="new-password"
+          placeholder="••••••••"
+        />
 
-        <Button type="submit" className="cursor-pointer">
-          Login now
+        <Checkbox
+          label="I agree to the Terms & Conditions and Privacy Policy"
+        />
+
+        <Button type="submit">
+          Create account
         </Button>
       </form>
 
       <p className="text-muted text-center text-sm">
-        Dont have an account?{" "}
-        <Link href={ROUTES.register} className="text-primary font-medium hover:underline">
-          Create New Account
+        Already have an account?{" "}
+        <Link href={ROUTES.login} className="text-primary font-medium hover:underline">
+          Log in
         </Link>
       </p>
     </div>

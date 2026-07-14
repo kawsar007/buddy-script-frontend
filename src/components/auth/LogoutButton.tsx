@@ -1,17 +1,14 @@
 "use client";
 
-import { useState } from "react";
+import { cn } from "@/src/lib/utils/cn";
 import { LogOut } from "lucide-react";
-import { useAuth } from "@/hooks/useAuth";
-import { cn } from "@/lib/utils/cn";
+import { useState } from "react";
 
 export function LogoutButton({ className }: { className?: string }) {
-  const { logout } = useAuth();
   const [isLoggingOut, setIsLoggingOut] = useState(false);
 
   const handleLogout = async () => {
     setIsLoggingOut(true);
-    await logout();
     setIsLoggingOut(false);
   };
 

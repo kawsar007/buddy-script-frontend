@@ -1,4 +1,4 @@
-import { cn } from "@/app/lib/utils/cn";
+import { cn } from "@/src/lib/utils/cn";
 import { Loader2 } from "lucide-react";
 
 export function Spinner({ className }: { className?: string }) {
