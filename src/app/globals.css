@@ -1,13 +1,126 @@
-@import 'tailwindcss';
+@import "tailwindcss";
 
-/* Drive dark: utilities off a .dark class on <html> (set by the anti-flicker
-   script + ThemeContext) instead of the OS-only prefers-color-scheme default,
-   so users can override their system preference. */
 @custom-variant dark (&:where(.dark, .dark *));
 
-/* Raw color values. Kept separate from the @theme block below so light/dark
-   is just "swap these variables" — components never reference light/dark
-   directly, only the semantic tokens exposed via @theme. */
+:root {
+  /* Brand */
+  --color-primary: #1890FF;
+  --color-primary-dark: #1e4fc4;
+  --color-primary-light: #eaf1ff;
+
+  /* Illustration / accent */
+  --color-sky: #8fc6fa;
+  --color-sky-light: #cfe8ff;
+
+  /* Neutrals */
+  --color-ink: #16213a;
+  --color-muted: #64748b;
+  --color-border: #e4e8f0;
+  --color-surface: #ffffff;
+  --color-bg: #f0f2f5;
+
+  /* Feedback */
+  --color-success: #16a34a;
+  --color-success-light: #e7f7ed;
+  --color-danger: #e0393e;
+  --color-danger-light: #fdecec;
+
+  --background: var(--color-bg);
+  --foreground: var(--color-ink);
+}
+
+.dark {
+  /* Brand — slightly brighter blue for contrast on dark surfaces */
+  --color-primary: #4c86ff;
+  --color-primary-dark: #6f9fff;
+  --color-primary-light: #16213f;
+
+  --color-sky: #2b5da3;
+  --color-sky-light: #16243b;
+
+  /* Neutrals */
+  --color-ink: #e7eaf0;
+  --color-muted: #93a0b8;
+  --color-border: #262e3d;
+  --color-surface: #151a24;
+  --color-bg: #0b0f19;
+
+  /* Feedback */
+  --color-success: #34c476;
+  --color-success-light: #123522;
+  --color-danger: #f4595e;
+  --color-danger-light: #3a1418;
+
+  --background: var(--color-bg);
+  --foreground: var(--color-ink);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+
+  --color-primary: var(--color-primary);
+  --color-primary-dark: var(--color-primary-dark);
+  --color-primary-light: var(--color-primary-light);
+  --color-sky: var(--color-sky);
+  --color-sky-light: var(--color-sky-light);
+  --color-ink: var(--color-ink);
+  --color-muted: var(--color-muted);
+  --color-border: var(--color-border);
+  --color-surface: var(--color-surface);
+  --color-bg: var(--color-bg);
+  --color-success: var(--color-success);
+  --color-success-light: var(--color-success-light);
+  --color-danger: var(--color-danger);
+  --color-danger-light: var(--color-danger-light);
+
+  --font-display:
+    "Plus Jakarta Sans", "Inter", ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, sans-serif;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease;
+}
+
+/* Slim, unobtrusive scrollbars for the independently-scrolling feed columns */
+.scroll-column {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-border) transparent;
+}
+.scroll-column::-webkit-scrollbar {
+  width: 6px;
+}
+.scroll-column::-webkit-scrollbar-thumb {
+  background-color: var(--color-border);
+  border-radius: 9999px;
+}
+.scroll-column::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+
+
+
+/* @import 'tailwindcss';
+
+@custom-variant dark (&:where(.dark, .dark *));
 :root {
   --background: oklch(1 0 0);
   --foreground: oklch(0.145 0 0);
@@ -51,9 +164,6 @@
   --destructive: oklch(0.7 0.19 27);
   --destructive-foreground: oklch(0.145 0 0);
 }
-
-/* Exposes the variables above as Tailwind utilities: bg-background,
-   text-foreground, border-border, bg-accent, text-accent-foreground, etc. */
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -85,75 +195,5 @@
     background-color: var(--color-background);
     color: var(--color-foreground);
     font-family: var(--font-sans);
-  }
-}
-
-
-
-/* @import "tailwindcss";
-
-:root {
-  Brand
-  --color-primary: #1890FF;
-  --color-primary-dark: #0568c4;
-  --color-primary-light: #eaf1ff;
-
-  Illustration / accent
-  --color-sky: #8fc6fa;
-  --color-sky-light: #cfe8ff;
-
-  Neutrals
-  --color-ink: #16213a;
-  --color-muted: #64748b;
-  --color-border: #e4e8f0;
-  --color-surface: #ffffff;
-  --color-bg: #f3f5f9;
-
-  Feedback
-  --color-success: #16a34a;
-  --color-danger: #e0393e;
-  --color-danger-light: #fdecec;
-
-  --background: var(--color-bg);
-  --foreground: var(--color-ink);
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-
-  --color-primary: var(--color-primary);
-  --color-primary-dark: var(--color-primary-dark);
-  --color-primary-light: var(--color-primary-light);
-  --color-sky: var(--color-sky);
-  --color-sky-light: var(--color-sky-light);
-  --color-ink: var(--color-ink);
-  --color-muted: var(--color-muted);
-  --color-border: var(--color-border);
-  --color-surface: var(--color-surface);
-  --color-bg: var(--color-bg);
-  --color-success: var(--color-success);
-  --color-danger: var(--color-danger);
-  --color-danger-light: var(--color-danger-light);
-
-  --font-display:
-    "Plus Jakarta Sans", "Inter", ui-sans-serif, system-ui, -apple-system, sans-serif;
-  --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, sans-serif;
-}
-
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: var(--font-sans);
-}
-
-@media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-    scroll-behavior: auto !important;
   }
 } */
