@@ -1,24 +1,14 @@
 'use client';
 
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/src/components/ui/Card";
+import { buttonVariants } from '@/src/components/ui/Button';
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/src/components/ui/Card";
 import { ErrorState } from "@/src/components/ui/ErrorState";
 import { Spinner } from "@/src/components/ui/Spinner";
 import { useAuth } from "@/src/contexts/AuthContext";
 import { getErrorMessage } from "@/src/lib/utils/get-error-message";
+import { ExternalLink, Pencil } from "lucide-react";
+import Link from "next/link";
 import { useCurrentUser } from "../../auth/hooks/useCurrentUser";
-
-// import { useCurrentUser } from '@/features/auth/hooks/useCurrentUser';
-// import { useAuth } from '@/contexts/AuthContext';
-// import {
-//   Card,
-//   CardHeader,
-//   CardTitle,
-//   CardDescription,
-//   CardContent,
-// } from '@/components/ui/Card';
-// import { Spinner } from '@/components/ui/Spinner';
-// import { ErrorState } from '@/components/ui/ErrorState';
-// import { getErrorMessage } from '@/lib/utils/get-error-message';
 
 const FIELD_ROWS: {
   label: string;
@@ -72,6 +62,16 @@ export function ProfileCard() {
           </div>
         ))}
       </CardContent>
+      <CardFooter className="gap-2">
+        <Link href="/profile/edit" className={buttonVariants('primary', 'sm')}>
+          <Pencil className="h-4 w-4" aria-hidden="true" />
+          Edit profile
+        </Link>
+        <Link href={`/users/${user.id}`} className={buttonVariants('outline', 'sm')}>
+          <ExternalLink className="h-4 w-4" aria-hidden="true" />
+          View public profile
+        </Link>
+      </CardFooter>
     </Card>
   );
 }

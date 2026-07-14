@@ -1,5 +1,4 @@
-// import type { AuthResponse } from '@/features/auth/types/auth.types';
-// import type { ApiError, ApiErrorResponse, ApiSuccessResponse } from '@/types/api.types';
+
 import { AuthResponse } from '@/src/features/auth/types/auth.types';
 import { ApiError, ApiErrorResponse, ApiSuccessResponse } from '@/src/types/api.types';
 import axios, { type AxiosError, type InternalAxiosRequestConfig } from 'axios';
@@ -23,10 +22,6 @@ apiClient.interceptors.request.use((config) => {
 });
 
 type RetryableConfig = InternalAxiosRequestConfig & { _retry?: boolean };
-
-// Ensures concurrent 401s (e.g. several queries firing at once after an
-// access token expires) trigger exactly one /auth/refresh call, not one
-// per failed request — every caller awaits the same in-flight promise.
 let refreshPromise: Promise<string | null> | null = null;
 
 async function refreshAccessToken(): Promise<string | null> {

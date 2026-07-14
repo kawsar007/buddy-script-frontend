@@ -22,6 +22,7 @@ interface AuthContextValue {
   isAuthenticated: boolean;
   isLoading: boolean;
   setSession: (auth: AuthResponse) => void;
+  updateCachedUser: (updates: Partial<User>) => void;
   logout: () => void;
 }
 
@@ -51,6 +52,15 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     },
     [queryClient],
   );
+
+  const updateCachedUser = useCallback((updates: Partial<User>) => {
+    setUser((prev) => {
+      if (!prev) return prev;
+      const next = { ...prev, ...updates };
+      localStorage.setItem(STORAGE_KEYS.user, JSON.stringify(next));
+      return next;
+    });
+  }, []);
 
   const logout = useCallback(() => {
     clearApiSession();
@@ -90,6 +100,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     isAuthenticated: hasToken && user !== null,
     isLoading: isRestoring,
     setSession,
+    updateCachedUser,
     logout,
   };
 
