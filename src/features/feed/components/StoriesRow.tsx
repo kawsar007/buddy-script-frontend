@@ -68,7 +68,7 @@ export function StoriesRow() {
         {stories.map((story) => (
           <button
             key={story.id}
-            className="group relative h-40 w-28 shrink-0 overflow-hidden rounded-2xl cursor-pointer"
+            className="group relative h-40 w-28 shrink-0 overflow-hidden rounded-md cursor-pointer"
           >
             <Image
               src={story.image ?? ""}
