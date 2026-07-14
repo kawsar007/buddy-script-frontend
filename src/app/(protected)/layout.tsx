@@ -1,5 +1,6 @@
 'use client';
 
+import { Navbar } from '@/src/components/layout/Navbar';
 import { Spinner } from '@/src/components/ui/Spinner';
 import { useAuth } from '@/src/contexts/AuthContext';
 import { ROUTES } from '@/src/lib/constants/routes';
@@ -41,5 +42,11 @@ export default function ProtectedLayout({ children }: { children: React.ReactNod
     return null;
   }
 
-  return <>{children}</>;
+  // return <>{children}</>;
+  return (
+    <div>
+      <Navbar />
+      {children}
+    </div>
+  )
 }

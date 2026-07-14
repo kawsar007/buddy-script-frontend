@@ -1,12 +1,16 @@
 'use client';
 
-import Link from 'next/link';
+import { useAuth } from '@/src/contexts/AuthContext';
+import { LogoutButton } from '@/src/features/auth/components/LogoutButton';
+import { ROUTES } from '@/src/lib/constants/routes';
 import { Rss } from 'lucide-react';
-import { useAuth } from '@/contexts/AuthContext';
-import { ThemeToggle } from '@/components/theme/ThemeToggle';
-import { LogoutButton } from '@/features/auth/components/LogoutButton';
-import { buttonVariants } from '@/components/ui/Button';
-import { ROUTES } from '@/lib/constants/routes';
+import Link from 'next/link';
+import { ThemeToggle } from '../theme/ThemeToggle';
+// import { useAuth } from '@/contexts/AuthContext';
+// import { ThemeToggle } from '@/components/theme/ThemeToggle';
+// import { LogoutButton } from '@/features/auth/components/LogoutButton';
+// import { buttonVariants } from '@/components/ui/Button';
+// import { ROUTES } from '@/lib/constants/routes';
 
 export function Navbar() {
   const { user, isAuthenticated, isLoading } = useAuth();
@@ -31,10 +35,10 @@ export function Navbar() {
             </div>
           ) : (
             <div className="flex items-center gap-2">
-              <Link href={ROUTES.login} className={buttonVariants('ghost', 'sm')}>
+              <Link href={ROUTES.login} >
                 Sign in
               </Link>
-              <Link href={ROUTES.register} className={buttonVariants('primary', 'sm')}>
+              <Link href={ROUTES.register} >
                 Sign up
               </Link>
             </div>

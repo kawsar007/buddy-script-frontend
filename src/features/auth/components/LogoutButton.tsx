@@ -1,9 +1,11 @@
 'use client';
 
+import { Button, ButtonProps } from '@/src/components/ui/Button';
+import { useAuth } from '@/src/contexts/AuthContext';
 import { LogOut } from 'lucide-react';
 import toast from 'react-hot-toast';
-import { useAuth } from '@/contexts/AuthContext';
-import { Button, type ButtonProps } from '@/components/ui/Button';
+// import { useAuth } from '@/contexts/AuthContext';
+// import { Button, type ButtonProps } from '@/components/ui/Button';
 
 export function LogoutButton(props: Omit<ButtonProps, 'onClick'>) {
   const { logout } = useAuth();
@@ -14,7 +16,7 @@ export function LogoutButton(props: Omit<ButtonProps, 'onClick'>) {
   };
 
   return (
-    <Button variant="outline" size="sm" onClick={handleLogout} {...props}>
+    <Button variant="outline" onClick={handleLogout} {...props}>
       <LogOut className="h-4 w-4" aria-hidden="true" />
       Sign out
     </Button>
