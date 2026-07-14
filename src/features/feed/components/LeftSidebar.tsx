@@ -10,6 +10,7 @@ import {
   Users,
   Video,
 } from "lucide-react";
+import Image from "next/image";
 
 const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
   learning: Video,
@@ -62,10 +63,10 @@ export function LeftSidebar() {
         </div>
         <ul className="flex flex-col gap-3">
           {suggestedPeople.map((person) => (
-            <li key={person.id} className="flex items-center gap-3">
+            <li key={person.id} className="flex items-center gap-3 p-2">
               <Avatar avatarUrl={person.image} firstName="" lastName="" size="sm" />
               <div className="min-w-0 flex-1">
-                <p className="text-ink truncate text-sm font-semibold">{person.name}</p>
+                <p className="text-ink truncate text-sm font-normal">{person.name}</p>
 
                 <p className="text-muted truncate text-xs">{person.role}</p>
               </div>
@@ -80,7 +81,7 @@ export function LeftSidebar() {
         </ul>
       </section>
 
-      <section className="border-border bg-surface rounded-2xl border p-5 shadow-sm">
+      {/* <section className="border-border bg-surface rounded-2xl border p-5 shadow-sm">
         <div className="mb-3 flex items-center justify-between">
           <h2 className="text-ink text-base font-bold">Events</h2>
           <button
@@ -104,6 +105,79 @@ export function LeftSidebar() {
               </div>
             </li>
           ))}
+        </ul>
+      </section> */}
+      <section className="border-border bg-surface rounded-2xl border p-5 shadow-sm">
+        <div className="mb-4 flex items-center justify-between">
+          <h2 className="text-ink text-xl font-bold">Events</h2>
+
+          <button
+            type="button"
+            className="text-primary text-sm font-semibold hover:underline"
+          >
+            See all
+          </button>
+        </div>
+
+        <ul className="space-y-5">
+          {upcomingEvents.map((event) => {
+            const [, month, day] = event.date.replace(",", "").split(" ");
+
+            return (
+              <li
+                key={event.id}
+                className="border-border overflow-hidden rounded-md border bg-white shadow-sm transition-shadow hover:shadow-md"
+              >
+                {/* Cover */}
+                <div className="relative h-44 w-full">
+                  <Image
+                    src={event.image}
+                    alt={event.title}
+                    fill
+                    className="object-cover"
+                    sizes="(max-width:768px) 100vw, 320px"
+                  />
+                </div>
+
+                {/* Body */}
+                <div className="p-4">
+                  <div className="flex items-start gap-3">
+                    {/* Date */}
+                    <div className="flex h-14 w-14 shrink-0 flex-col items-center justify-center rounded-md bg-emerald-500 text-white">
+                      <span className="text-lg font-bold leading-none">
+                        {day}
+                      </span>
+
+                      <span className="text-xs font-semibold uppercase">
+                        {month}
+                      </span>
+                    </div>
+
+                    {/* Title */}
+                    <div className="min-w-0 flex-1">
+                      <h3 className="text-ink line-clamp-2 text-md font-medium leading-snug">
+                        {event.title}
+                      </h3>
+                    </div>
+                  </div>
+
+                  {/* Footer */}
+                  <div className="border-border mt-5 flex items-center justify-between border-t pt-4">
+                    <p className="text-muted text-sm">
+                      {event.attendees.toLocaleString()} People Going
+                    </p>
+
+                    <button
+                      type="button"
+                      className="border-primary text-primary hover:bg-primary rounded-sm border px-3 py-1 text-sm font-normal transition-colors hover:text-white cursor-pointer"
+                    >
+                      Going
+                    </button>
+                  </div>
+                </div>
+              </li>
+            );
+          })}
         </ul>
       </section>
     </div>

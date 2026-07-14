@@ -19,32 +19,57 @@ export function RightSidebar() {
     <div className="flex flex-col gap-4">
       {visibleRecommendations.length > 0 && (
         <section className="border-border bg-surface rounded-2xl border p-5 shadow-sm">
-          <div className="mb-3 flex items-center justify-between">
-            <h2 className="text-ink text-base font-bold">You Might Like</h2>
+          <div className="flex items-center justify-between">
+            <h2 className="text-ink text-xl font-medium">
+              You Might Like
+            </h2>
+
             <button
               type="button"
-              className="text-primary text-xs font-semibold hover:underline"
+              className="text-primary text-sm font-semibold hover:underline"
             >
               See All
             </button>
           </div>
           {visibleRecommendations.slice(0, 1).map((rec) => (
-            <div key={rec.id} className="flex flex-col items-center gap-2 text-center">
-              {/* <Avatar name={rec.name} size="lg" /> */}
-              <Avatar avatarUrl={rec?.image} firstName="" lastName="" size="lg" />
-              <div>
-                <p className="text-ink text-sm font-semibold">{rec.name}</p>
-                <p className="text-muted text-xs">{rec.role}</p>
+            <div key={rec.id}>
+              {/* Divider */}
+              <div className="border-border mb-6" />
+
+              {/* User Info */}
+              <div className="flex items-center gap-4">
+                <Avatar
+                  avatarUrl={rec.image}
+                  firstName=""
+                  lastName=""
+                  size="md"
+                />
+
+                <div className="min-w-0 flex-1 p-4">
+                  <h3 className="text-ink truncate text-md font-medium">
+                    {rec.name}
+                  </h3>
+
+                  <p className="text-muted mt-1 truncate text-xs">
+                    {rec.role}
+                  </p>
+                </div>
               </div>
-              <div className="mt-2 flex w-full gap-2">
+
+              {/* Actions */}
+              <div className="mt-6 flex gap-3">
                 <Button
                   variant="outline"
-                  className="w-auto flex-1 px-3 py-2 text-xs"
                   onClick={() => setIgnored((prev) => [...prev, rec.id])}
+                  className="text-muted hover:bg-primary hover:text-white h-11 flex-1 rounded-lg border text-base font-medium cursor-pointer"
                 >
                   Ignore
                 </Button>
-                <Button variant="primary" className="w-auto flex-1 px-3 py-2 text-xs">
+
+                <Button
+                  variant="primary"
+                  className="h-11 flex-1 rounded-lg text-base font-semibold text-white cursor-pointer"
+                >
                   Follow
                 </Button>
               </div>
@@ -80,10 +105,10 @@ export function RightSidebar() {
 
         <ul className="flex flex-col gap-3">
           {filteredFriends.map((friend) => (
-            <li key={friend.id} className="flex items-center gap-3">
+            <li key={friend.id} className="flex items-center gap-3 p-2 hover:bg-bg rounded-md">
               <Avatar avatarUrl={friend?.image} firstName="" lastName="" size="sm" />
               <div className="min-w-0 flex-1">
-                <p className="text-ink truncate text-sm font-semibold">{friend.name}</p>
+                <p className="text-ink truncate text-sm font-normal">{friend.name}</p>
                 <p className="text-muted truncate text-xs">{friend.role}</p>
               </div>
               {friend.lastActive && (

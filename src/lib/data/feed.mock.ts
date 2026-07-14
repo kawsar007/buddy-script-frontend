@@ -57,6 +57,10 @@ export const friends: (Person & { lastActive?: string })[] = [
   { id: "f-4", name: "Priya Nair", role: "CEO of Notion", lastActive: "5 minute ago", image: "/images/img1.png" },
   { id: "f-5", name: "Marcus Webb", role: "CEO of Stripe", online: true, image: "/images/img2.png" },
   { id: "f-6", name: "Amara Chen", role: "CEO of Vercel", online: true, image: "/images/img3.png" },
+
+  { id: "f-7", name: "Afzal Khan", role: "CEO of Notion", lastActive: "5 minute ago", image: "/images/img5.png" },
+  { id: "f-8", name: "Niaz Mortaza", role: "CEO of Stripe", online: true, image: "/images/img6.png" },
+  { id: "f-9", name: "Nirob Mia", role: "CEO of Vercel", online: true, image: "/images/img7.png" },
 ];
 
 export const posts: PostContent[] = [
