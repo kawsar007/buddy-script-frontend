@@ -23,12 +23,15 @@ export const stories: Story[] = [
     id: "story-own",
     name: "Your Story",
     isOwn: true,
-    gradient: "from-slate-700 to-slate-900",
+    image: "/images/f5.png"
   },
-  { id: "story-1", name: "Amara Chen", gradient: "from-rose-400 to-orange-300" },
-  { id: "story-2", name: "Ryan Roslansky", gradient: "from-sky-400 to-indigo-400" },
-  { id: "story-3", name: "Priya Nair", gradient: "from-emerald-400 to-teal-500" },
-  { id: "story-4", name: "Marcus Webb", gradient: "from-violet-500 to-fuchsia-400" },
+  { id: "story-1", name: "Amara Chen", image: "/images/f1.png" },
+  { id: "story-2", name: "Ryan Roslansky", image: "/images/f2.png" },
+  { id: "story-3", name: "Priya Nair", image: "/images/f3.png" },
+  { id: "story-4", name: "Marcus Webb", image: "/images/f4.png" },
+
+  { id: "story-5", name: "Leo Messi", image: "/images/f6.png" },
+  { id: "story-6", name: "Mychel Olise", image: "/images/f7.png" },
 ];
 
 export const suggestedPeople: Person[] = [

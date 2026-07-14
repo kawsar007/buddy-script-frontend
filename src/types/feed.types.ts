@@ -10,7 +10,7 @@ export interface Story {
   id: string;
   name: string;
   isOwn?: boolean;
-  gradient: string;
+  image?: string;
 }
 
 export interface PostAuthor {

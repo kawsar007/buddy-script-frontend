@@ -1,4 +1,5 @@
 "use client";
+import { useAuth } from "@/src/contexts/AuthContext";
 import { posts } from "@/src/lib/data/feed.mock";
 import { X } from "lucide-react";
 import { useState } from "react";
@@ -11,6 +12,7 @@ import { RightSidebar } from "./RightSidebar";
 import { StoriesRow } from "./StoriesRow";
 
 export function FeedLayout() {
+  const { user, isAuthenticated, isLoading } = useAuth();
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 
   return (
@@ -26,7 +28,7 @@ export function FeedLayout() {
         {/* Middle feed — scrolls independently */}
         <main className="scroll-column min-w-0 flex-1 overflow-y-auto">
           <div className="mx-auto flex max-w-2xl flex-col gap-4 pb-8">
-            <StoriesRow />
+            <StoriesRow user={user} />
             <ComposerCard />
             {posts.map((post) => (
               <PostCard key={post.id} post={post} />
