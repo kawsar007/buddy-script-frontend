@@ -28,7 +28,7 @@ export function FeedLayout() {
         {/* Middle feed — scrolls independently */}
         <main className="scroll-column min-w-0 flex-1 overflow-y-auto">
           <div className="mx-auto flex max-w-2xl flex-col gap-4 pb-8">
-            <StoriesRow user={user} />
+            <StoriesRow />
             <ComposerCard />
             {posts.map((post) => (
               <PostCard key={post.id} post={post} />
