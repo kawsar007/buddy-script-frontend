@@ -1,12 +1,28 @@
-import { cn } from "@/src/lib/utils/cn";
-import { Loader2 } from "lucide-react";
+import { cn } from '@/src/lib/utils/cn';
+import { Loader2 } from 'lucide-react';
 
-export function Spinner({ className }: { className?: string }) {
+const SIZES = {
+  sm: 'h-4 w-4',
+  md: 'h-6 w-6',
+  lg: 'h-10 w-10',
+} as const;
+
+export function Spinner({
+  size = 'md',
+  className,
+  label = 'Loading…',
+}: {
+  size?: keyof typeof SIZES;
+  className?: string;
+  label?: string;
+}) {
   return (
-    <Loader2
-      className={cn("text-primary size-5 animate-spin", className)}
-      aria-hidden="true"
-    />
+    <span role="status" className="inline-flex items-center gap-2">
+      <Loader2
+        className={cn('text-muted-foreground animate-spin', SIZES[size], className)}
+      />
+      <span className="sr-only">{label}</span>
+    </span>
   );
 }
 
@@ -18,3 +34,4 @@ export function FullPageSpinner({ label = "Loading…" }: { label?: string }) {
     </div>
   );
 }
+

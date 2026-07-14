@@ -1,26 +1,33 @@
 'use client';
 
-import { useCurrentUser } from '@/features/auth/hooks/useCurrentUser';
-import { useAuth } from '@/contexts/AuthContext';
-import {
-  Card,
-  CardHeader,
-  CardTitle,
-  CardDescription,
-  CardContent,
-} from '@/components/ui/Card';
-import { Spinner } from '@/components/ui/Spinner';
-import { ErrorState } from '@/components/ui/ErrorState';
-import { getErrorMessage } from '@/lib/utils/get-error-message';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/src/components/ui/Card";
+import { ErrorState } from "@/src/components/ui/ErrorState";
+import { Spinner } from "@/src/components/ui/Spinner";
+import { useAuth } from "@/src/contexts/AuthContext";
+import { getErrorMessage } from "@/src/lib/utils/get-error-message";
+import { useCurrentUser } from "../../auth/hooks/useCurrentUser";
+
+// import { useCurrentUser } from '@/features/auth/hooks/useCurrentUser';
+// import { useAuth } from '@/contexts/AuthContext';
+// import {
+//   Card,
+//   CardHeader,
+//   CardTitle,
+//   CardDescription,
+//   CardContent,
+// } from '@/components/ui/Card';
+// import { Spinner } from '@/components/ui/Spinner';
+// import { ErrorState } from '@/components/ui/ErrorState';
+// import { getErrorMessage } from '@/lib/utils/get-error-message';
 
 const FIELD_ROWS: {
   label: string;
   render: (user: NonNullable<ReturnType<typeof useCurrentUser>['data']>) => string;
 }[] = [
-  { label: 'Email', render: (u) => u.email },
-  { label: 'Role', render: (u) => u.role },
-  { label: 'Member since', render: (u) => new Date(u.createdAt).toLocaleDateString() },
-];
+    { label: 'Email', render: (u) => u.email },
+    { label: 'Role', render: (u) => u.role },
+    { label: 'Member since', render: (u) => new Date(u.createdAt).toLocaleDateString() },
+  ];
 
 export function ProfileCard() {
   const { isAuthenticated } = useAuth();
