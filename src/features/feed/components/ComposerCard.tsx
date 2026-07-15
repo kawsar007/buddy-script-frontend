@@ -8,12 +8,11 @@ import { getErrorMessage } from "@/src/lib/utils/get-error-message";
 import { zodResolver } from "@hookform/resolvers/zod";
 import {
   Calendar,
-  FileText,
   Image as ImageIcon,
   PencilLine,
   Send,
   Video,
-  X,
+  X
 } from "lucide-react";
 import { useRef, useState } from "react";
 import { useForm } from "react-hook-form";
@@ -24,8 +23,8 @@ import { usePostImageUpload } from "../hooks/usePostImageUpload";
 import { postFormSchema, PostFormValues } from "../schemas/post.schema";
 
 export const VISIBILITY_OPTIONS = [
-  { value: 'PUBLIC', label: 'Public — anyone can see this' },
-  { value: 'PRIVATE', label: 'Private — only you can see this' },
+  { value: 'PUBLIC', label: 'Public' },
+  { value: 'PRIVATE', label: 'Private' },
 ];
 
 export function ComposerCard() {
@@ -174,7 +173,7 @@ export function ComposerCard() {
           </p>
         )}
 
-        <div className="mt-4 flex flex-wrap items-center gap-1 bg-[#1890FF0D] p-2 sm:gap-2">
+        <div className="mt-4 flex flex-wrap items-center gap-1 rounded-xl bg-[#1890FF0D] p-2 sm:gap-2">
           <button
             type="button"
             onClick={handlePhotoButtonClick}
@@ -200,16 +199,17 @@ export function ComposerCard() {
             Event
           </button>
 
-          <button
+          {/* <button
             type="button"
             className="text-muted hover:text-primary hidden cursor-pointer items-center gap-1.5 rounded-lg px-2.5 py-1.5 text-xs font-medium sm:flex sm:text-sm"
           >
             <FileText className="size-5" />
             Article
-          </button>
+          </button> */}
 
-          <div className="ml-auto w-36 sm:ml-2 sm:w-40">
+          <div className="ml-auto sm:ml-2">
             <Select
+              variant="pill"
               options={VISIBILITY_OPTIONS}
               error={errors.visibility?.message}
               {...register("visibility")}

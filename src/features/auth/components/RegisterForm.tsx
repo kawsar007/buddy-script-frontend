@@ -87,7 +87,7 @@ export function RegisterForm() {
           error={errors.password?.message}
           {...register('password')}
         />
-        <Button type="submit" isLoading={registerUser.isPending} className="mt-2 w-full">
+        <Button type="submit" isLoading={registerUser.isPending} className="mt-2 w-full text-white">
           Create account
         </Button>
         <p className="text-muted-foreground text-center text-sm">

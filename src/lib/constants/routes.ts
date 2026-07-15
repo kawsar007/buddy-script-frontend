@@ -7,6 +7,7 @@ export const ROUTES = {
   register: "/register",
   profile: "/profile",
   dashboard: "/dashboard",
+  feed: "/feed"
 } as const;
 
 export const PROTECTED_ROUTES = [ROUTES.dashboard, ROUTES.profile] as const;

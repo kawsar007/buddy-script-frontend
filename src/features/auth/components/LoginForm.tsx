@@ -30,7 +30,7 @@ export function LoginForm() {
     login.mutate(values, {
       onSuccess: () => {
         toast.success('Welcome back!');
-        router.push(ROUTES.profile);
+        router.push(ROUTES.feed);
       },
       onError: (error) => {
         toast.error(getErrorMessage(error));
@@ -71,7 +71,7 @@ export function LoginForm() {
           error={errors.password?.message}
           {...register('password')}
         />
-        <Button type="submit" isLoading={login.isPending} className="mt-2 w-full cursor-pointer">
+        <Button type="submit" isLoading={login.isPending} className="mt-2 w-full cursor-pointer text-white">
           Login now
         </Button>
         <p className="text-muted-foreground text-center text-sm">
