@@ -31,7 +31,7 @@ export function RegisterForm() {
     registerUser.mutate(values, {
       onSuccess: () => {
         toast.success('Account created!');
-        router.push(ROUTES.profile);
+        router.push(ROUTES.feed);
       },
       onError: (error) => {
         toast.error(getErrorMessage(error));

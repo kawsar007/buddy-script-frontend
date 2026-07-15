@@ -70,7 +70,7 @@ export function EditProfileForm() {
     updateProfile.mutate(payload, {
       onSuccess: () => {
         toast.success('Profile updated');
-        router.push(ROUTES.profile);
+        router.push(ROUTES.feed);
       },
       onError: (err) => {
         toast.error(getErrorMessage(err));
