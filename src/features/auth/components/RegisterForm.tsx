@@ -60,6 +60,7 @@ export function RegisterForm() {
           label="First name"
           autoComplete="given-name"
           required
+          placeholder='Enter first name'
           error={errors.firstName?.message}
           {...register('firstName')}
         />
@@ -67,6 +68,7 @@ export function RegisterForm() {
           label="Last name"
           autoComplete="family-name"
           required
+          placeholder='Enter last name'
           error={errors.lastName?.message}
           {...register('lastName')}
         />
@@ -74,6 +76,7 @@ export function RegisterForm() {
           label="Email"
           type="email"
           autoComplete="email"
+          placeholder='Enter email'
           required
           error={errors.email?.message}
           {...register('email')}
@@ -81,6 +84,7 @@ export function RegisterForm() {
         <Input
           label="Password"
           type="password"
+          placeholder='******'
           autoComplete="new-password"
           required
           // hint="At least 8 characters, with upper/lowercase, a number, and a symbol."

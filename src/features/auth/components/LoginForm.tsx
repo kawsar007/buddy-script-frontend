@@ -59,6 +59,7 @@ export function LoginForm() {
           label="Email"
           type="email"
           autoComplete="email"
+          placeholder='Enter email'
           required
           error={errors.email?.message}
           {...register('email')}
@@ -66,6 +67,7 @@ export function LoginForm() {
         <Input
           label="Password"
           type="password"
+          placeholder='Enter password'
           autoComplete="current-password"
           required
           error={errors.password?.message}
