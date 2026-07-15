@@ -104,6 +104,7 @@ export function PostCard({ post }: { post: PostContent }) {
             src={buildAssetUrl(post.imageUrl)}
             alt=""
             fill
+            unoptimized
             sizes="(max-width: 768px) 100vw, 640px"
             className="object-cover"
           />

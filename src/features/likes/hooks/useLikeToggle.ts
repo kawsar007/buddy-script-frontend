@@ -15,6 +15,7 @@ function isApiError(error: unknown): error is ApiError {
 
 export function useLikeToggle(targetType: LikeTargetType, targetId: number) {
   const queryClient = useQueryClient();
+
   const countKey =
     targetType === 'post'
       ? [...queryKeys.likes.postLikers(targetId), 'count']
@@ -34,12 +35,13 @@ export function useLikeToggle(targetType: LikeTargetType, targetId: number) {
 
   const [liked, setLiked] = useState(false);
 
+  // Fix: Capture current value safely inside mutation execution block
   const mutation = useMutation({
-    mutationFn: () => {
+    mutationFn: (currentLikedStatus: boolean) => {
       if (targetType === 'post') {
-        return liked ? likesApi.unlikePost(targetId) : likesApi.likePost(targetId);
+        return currentLikedStatus ? likesApi.unlikePost(targetId) : likesApi.likePost(targetId);
       }
-      return liked ? likesApi.unlikeComment(targetId) : likesApi.likeComment(targetId);
+      return currentLikedStatus ? likesApi.unlikeComment(targetId) : likesApi.likeComment(targetId);
     },
     onMutate: async () => {
       await queryClient.cancelQueries({ queryKey: countKey });
@@ -61,9 +63,9 @@ export function useLikeToggle(targetType: LikeTargetType, targetId: number) {
         : { statusCode: 0, message: error.message };
 
       if (!context.previousLiked && apiError.statusCode === 409) {
-        setLiked(true); // was already liked — not a real error
+        setLiked(true);
       } else if (context.previousLiked && apiError.statusCode === 404) {
-        setLiked(false); // was already unliked — not a real error
+        setLiked(false);
       } else {
         setLiked(context.previousLiked);
         toast.error(getErrorMessage(error));
@@ -71,7 +73,9 @@ export function useLikeToggle(targetType: LikeTargetType, targetId: number) {
       queryClient.invalidateQueries({ queryKey: countKey });
     },
     onSuccess: (result) => {
-      queryClient.setQueryData<number>(countKey, result.likesCount);
+      if (result?.likesCount !== undefined) {
+        queryClient.setQueryData<number>(countKey, result.likesCount);
+      }
     },
   });
 
@@ -79,7 +83,7 @@ export function useLikeToggle(targetType: LikeTargetType, targetId: number) {
     liked,
     count: countQuery.data ?? 0,
     isCountLoading: countQuery.isLoading,
-    toggle: () => mutation.mutate(),
+    toggle: () => mutation.mutate(liked), // 👈 Pass the reliable current value here
     isToggling: mutation.isPending,
   };
 }
