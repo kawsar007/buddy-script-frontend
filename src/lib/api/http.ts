@@ -1,6 +1,7 @@
+// import type { ApiSuccessResponse, PaginatedResult } from '@/types/api.types';
+import { ApiSuccessResponse, PaginatedResult } from '@/src/types/api.types';
 import type { AxiosRequestConfig } from 'axios';
 import { apiClient } from './axios';
-import type { ApiSuccessResponse, PaginatedResult } from '@/types/api.types';
 
 export async function apiGet<T>(url: string, config?: AxiosRequestConfig): Promise<T> {
   const response = await apiClient.get<ApiSuccessResponse<T>>(url, config);
@@ -31,6 +32,20 @@ export async function apiPatch<T>(
   config?: AxiosRequestConfig,
 ): Promise<T> {
   const response = await apiClient.patch<ApiSuccessResponse<T>>(url, body, config);
+  return response.data.data;
+}
+
+export async function apiPostForm<T>(url: string, formData: FormData): Promise<T> {
+  const response = await apiClient.post<ApiSuccessResponse<T>>(url, formData, {
+    headers: { 'Content-Type': undefined },
+  });
+  return response.data.data;
+}
+
+export async function apiPatchForm<T>(url: string, formData: FormData): Promise<T> {
+  const response = await apiClient.patch<ApiSuccessResponse<T>>(url, formData, {
+    headers: { 'Content-Type': undefined },
+  });
   return response.data.data;
 }
 

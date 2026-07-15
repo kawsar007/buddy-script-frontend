@@ -1,5 +1,6 @@
 "use client";
 
+import { ThemeToggle } from "@/src/components/theme/ThemeToggle";
 import { CountBadge } from "@/src/components/ui/Badge";
 import { messageCount, notificationCount } from "@/src/lib/data/feed.mock";
 import {
@@ -88,7 +89,7 @@ export function AppHeader({ onMenuClick }: AppHeaderProps) {
           </button>
 
           {/* ThemeToggle */}
-          {/* <ThemeToggle className="ml-1" /> */}
+          <ThemeToggle />
 
           {/* User Menu */}
           <UserMenu />

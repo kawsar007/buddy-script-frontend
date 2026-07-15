@@ -3,6 +3,7 @@
 import { Avatar } from "@/src/components/ui/Avatar";
 import { Button } from "@/src/components/ui/Button";
 import { useAuth } from "@/src/contexts/AuthContext";
+import { getErrorMessage } from "@/src/lib/utils/get-error-message";
 import {
   Calendar,
   FileText,
@@ -12,14 +13,34 @@ import {
   Video,
 } from "lucide-react";
 import { useRef, useState } from "react";
+import toast from "react-hot-toast";
+import { useCurrentUser } from "../../auth/hooks/useCurrentUser";
+import { useCreatePost } from "../hooks/useCreatePost";
+import { PostFormValues } from "../schemas/post.schema";
+import { PostFormModal } from "./PostFormModal";
 
 export function ComposerCard() {
   const { user } = useAuth();
-
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const { isAuthenticated } = useAuth();
+  const { data: currentUser } = useCurrentUser(isAuthenticated);
   const [text, setText] = useState("");
   const [isFocused, setIsFocused] = useState(false);
+  const createPost = useCreatePost();
 
   const textareaRef = useRef<HTMLTextAreaElement>(null);
+
+  const handleSubmit = async (values: PostFormValues) => {
+    try {
+      await createPost.mutateAsync(values);
+      toast.success('Posted!');
+      setIsModalOpen(false);
+    } catch (error) {
+      toast.error(getErrorMessage(error));
+    }
+  };
+
+  // if (!currentUser) return null;
 
   if (!user) {
     return null;
@@ -48,14 +69,14 @@ export function ComposerCard() {
 
           <button
             type="button"
-            onClick={() => textareaRef.current?.focus()}
+            onClick={() => setIsModalOpen(true)}
             className={`text-muted absolute top-2 left-0 flex items-center gap-2 text-md transition-all duration-300 ease-out ${isFocused || text
               ? "-translate-y-2 scale-95 opacity-0"
               : "translate-y-0 scale-100 opacity-100"
               }`}
           >
 
-            <span>Write something…</span>
+            <span onClick={() => textareaRef.current?.focus()} >Write something…</span>
             <PencilLine className="size-4" />
           </button>
         </div>
@@ -64,6 +85,7 @@ export function ComposerCard() {
       <div className="mt-4 flex flex-wrap items-center gap-1 bg-[#1890FF0D] p-2 sm:gap-2">
         <button
           type="button"
+          onClick={() => setIsModalOpen(true)}
           className="text-muted hover:text-primary flex cursor-pointer items-center gap-1.5 rounded-lg px-2.5 py-1.5 text-xs font-medium sm:text-sm"
         >
           <ImageIcon className="size-5" />
@@ -103,6 +125,12 @@ export function ComposerCard() {
           Post
         </Button>
       </div>
+      <PostFormModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        isSubmitting={createPost.isPending}
+        onSubmit={handleSubmit}
+      />
     </div>
   );
 }
