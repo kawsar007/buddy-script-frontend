@@ -21,12 +21,12 @@ export function FeedLayout() {
 
       <div className="mx-auto flex w-full max-w-[1320px] flex-1 gap-5 overflow-hidden px-2 py-5 sm:px-6">
         {/* Left sidebar — tablet & desktop, scrolls independently */}
-        <aside className="scroll-column hidden w-72 shrink-0 overflow-y-auto md:block">
+        <aside className="scroll-column hide-scrollbar hidden w-72 shrink-0 overflow-y-auto md:block">
           <LeftSidebar />
         </aside>
 
         {/* Middle feed — scrolls independently */}
-        <main className="scroll-column min-w-0 flex-1 overflow-y-auto">
+        <main className="scroll-column hide-scrollbar min-w-0 flex-1 overflow-y-auto">
           <div className="mx-auto flex max-w-2xl flex-col gap-4 pb-8">
             <StoriesRow />
             <ComposerCard />
@@ -37,7 +37,7 @@ export function FeedLayout() {
         </main>
 
         {/* Right sidebar — desktop only, scrolls independently */}
-        <aside className="scroll-column hidden w-80 shrink-0 overflow-y-auto xl:block">
+        <aside className="scroll-column hide-scrollbar hidden w-80 shrink-0 overflow-y-auto xl:block">
           <RightSidebar />
         </aside>
       </div>
@@ -51,7 +51,7 @@ export function FeedLayout() {
             onClick={() => setIsDrawerOpen(false)}
             className="absolute inset-0 bg-black/40"
           />
-          <div className="bg-bg border-border scroll-column absolute inset-y-0 left-0 w-[85%] max-w-xs overflow-y-auto border-r p-4 shadow-xl">
+          <div className="bg-bg border-border scroll-column hide-scrollbar absolute inset-y-0 left-0 w-[85%] max-w-xs overflow-y-auto border-r p-4 shadow-xl">
             <div className="mb-4 flex items-center justify-between">
               <BrandLogo />
               <button
