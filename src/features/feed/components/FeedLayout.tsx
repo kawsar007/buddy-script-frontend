@@ -1,13 +1,12 @@
 "use client";
 import { useAuth } from "@/src/contexts/AuthContext";
-import { posts } from "@/src/lib/data/feed.mock";
 import { X } from "lucide-react";
 import { useState } from "react";
 import { BrandLogo } from "../../auth/components/BrandLogo";
 import { AppHeader } from "./AppHeader";
 import { ComposerCard } from "./ComposerCard";
 import { LeftSidebar } from "./LeftSidebar";
-import { PostCard } from "./PostCard";
+import { PostList } from "./PostList";
 import { RightSidebar } from "./RightSidebar";
 import { StoriesRow } from "./StoriesRow";
 
@@ -30,9 +29,10 @@ export function FeedLayout() {
           <div className="mx-auto flex max-w-2xl flex-col gap-4 pb-8">
             <StoriesRow />
             <ComposerCard />
-            {posts.map((post) => (
+            {/* {posts.map((post) => (
               <PostCard key={post.id} post={post} />
-            ))}
+            ))} */}
+            <PostList />
           </div>
         </main>
 

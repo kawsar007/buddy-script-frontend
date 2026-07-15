@@ -1,3 +1,6 @@
+import { PostVisibility } from "../features/feed/types/post.types";
+import { PublicUser } from "../features/users/types/user.types";
+
 export interface Person {
   id: string;
   name: string;
@@ -20,19 +23,13 @@ export interface PostAuthor {
 }
 
 export interface PostContent {
-  id: string;
-  author: PostAuthor;
-  timeAgo: string;
-  visibility: "Public" | "Friends" | "Only me";
-  text: string;
-  image?: {
-    gradient: string;
-    caption: string;
-  };
-  likeCount: number;
-  commentCount: number;
-  shareCount: number;
-  likedByMe?: boolean;
+  id: number;
+  content: string;
+  imageUrl: string | null;
+  visibility: PostVisibility;
+  author: PublicUser;
+  createdAt: string;
+  updatedAt: string;
 }
 
 export interface Recommendation {
