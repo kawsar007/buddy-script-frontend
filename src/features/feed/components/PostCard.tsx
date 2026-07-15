@@ -19,6 +19,7 @@ import {
 import Image from "next/image";
 import { useState } from "react";
 import toast from "react-hot-toast";
+// import { CommentSection } from "../../comments/components/CommentSection";
 import { CommentSection } from "../../comments/components/CommentSection";
 import { LikeButton } from "../../likes/components/LikeButton";
 import { LikersModal } from "../../likes/components/LikersModal";

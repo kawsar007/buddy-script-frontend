@@ -1,5 +1,6 @@
+import { ApiError } from '@/src/types/api.types';
 import { QueryClient, isServer } from '@tanstack/react-query';
-import type { ApiError } from '@/types/api.types';
+// import type { ApiError } from '@/types/api.types';
 
 function isApiError(error: unknown): error is ApiError {
   return typeof error === 'object' && error !== null && 'statusCode' in error;
