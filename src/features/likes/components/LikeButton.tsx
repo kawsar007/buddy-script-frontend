@@ -14,7 +14,6 @@ export function LikeButton({
   targetType: LikeTargetType;
   targetId: number;
   size?: 'sm' | 'md';
-  /** Opens the "who liked this" list — omit to hide the count as a button. */
   onCountClick?: () => void;
 }) {
   const { liked, count, toggle, isToggling } = useLikeToggle(targetType, targetId);

@@ -35,7 +35,6 @@ export function useLikeToggle(targetType: LikeTargetType, targetId: number) {
 
   const [liked, setLiked] = useState(false);
 
-  // Fix: Capture current value safely inside mutation execution block
   const mutation = useMutation({
     mutationFn: (currentLikedStatus: boolean) => {
       if (targetType === 'post') {
@@ -83,7 +82,7 @@ export function useLikeToggle(targetType: LikeTargetType, targetId: number) {
     liked,
     count: countQuery.data ?? 0,
     isCountLoading: countQuery.isLoading,
-    toggle: () => mutation.mutate(liked), // 👈 Pass the reliable current value here
+    toggle: () => mutation.mutate(liked),
     isToggling: mutation.isPending,
   };
 }
